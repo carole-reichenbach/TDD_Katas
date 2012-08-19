@@ -28,6 +28,16 @@ namespace StringCalculator
 
             Assert.That(result, Is.EqualTo(26));
         }
+
+        [Test]
+        public void returns_the_sum_of_2_numbers()
+        {
+            Calculator calc = new Calculator();
+
+            int result = calc.Add("20,15");
+
+            Assert.That(result,Is.EqualTo(35));
+        }
     }
 
     public class Calculator
@@ -36,8 +46,13 @@ namespace StringCalculator
         {
             if (numbers == "")
                 return 0;
-            else
+
+            string[] numberArray = numbers.Split(new char[] {','});
+
+            if(numberArray.Length == 1)
                 return Convert.ToInt32(numbers);
+
+            return Convert.ToInt32(numberArray[0]) + Convert.ToInt32(numberArray[1]);
         }
     }
 }
